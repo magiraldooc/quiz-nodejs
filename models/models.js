@@ -1,14 +1,30 @@
 var path = require('path');
 
+var url = process.env.DATABASE_URL.match(/(.*)\:\/\/(.*?)\:(.*)@(.*)\:(.*)\/(.*)/);
+var bd_name = (url[6] || null);
+var user = (url[2] || null);
+var pdw = (url[3] || null);
+var protocol = (url[1] || null);
+var dialect = (url[1] || null);
+var port = (url[5] || null);
+var host = (url[4] || null);
+var storage = process.env.DATABASE_STORAGE;
+
 //Carga modelo ORM
 var sequelize = require('sequelize');
 
 //Usa BD SQLite
 var seq = new sequelize(
-  null,
-  null,
-  null,
-  {dialect: 'sqlite', storage: 'quiz.sqlite'}
+  bd_name,
+  user,
+  pdw,
+  { dialect: protocol,
+    protocol: protocol,
+    port: port,
+    host: host,
+    storage: storage, //Solo en SQLite (.env)
+    omitNull: true //Solo en Postges (heroku)
+  }
 );
 
 //Importa la definición de la tabla Quiz en quiz.js
