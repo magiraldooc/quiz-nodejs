@@ -18,9 +18,8 @@ exports.index = function(req, res){
   var busqueda = req.query.busqueda || '';
   busqueda = '%' + busqueda.toLowerCase().trim().replace(' ', '%') + '%';
   console.log(busqueda);
-  models.Quiz.findAll({
-    where: ["pregunta like ?", busqueda]
-    }).then(function(quizes){
+  models.Quiz.findAll({where: ["pregunta like ?", busqueda]}).then(function(quizes){
+    console.log(quizes[0].pregunta);
     res.render('quizes/index', {quizes: quizes});
   }).catch(function(error){
     next(error);
