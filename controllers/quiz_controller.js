@@ -16,10 +16,11 @@ exports.load = function(req, res, next, quizId){
 //GET /quizes
 exports.index = function(req, res){
   var busqueda = req.query.busqueda || '';
+  console.log('1. ' + busqueda);
   busqueda = '%' + busqueda.toLowerCase().trim().replace(' ', '%') + '%';
-  console.log(busqueda);
+  console.log('2. ' + busqueda);
   models.Quiz.findAll({where: ["pregunta like ?", busqueda]}).then(function(quizes){
-    console.log(quizes[0].pregunta);
+    console.log('3. ' + quizes);
     res.render('quizes/index', {quizes: quizes});
   }).catch(function(error){
     next(error);
