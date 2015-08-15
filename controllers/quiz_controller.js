@@ -36,6 +36,6 @@ exports.answer = function(req, res){
     if(req.query.respuesta.toLowerCase().trim() === req.quiz.respuesta.toLowerCase().trim()){
       resultado = 'Correcto';
     }
-    res.render('quizes/answer', {quiz: req.quiz, resultado: respuesta});
+    res.render('quizes/answer', {quiz: req.quiz, respuesta: resultado});
   });
 };
