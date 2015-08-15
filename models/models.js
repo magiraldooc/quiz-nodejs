@@ -50,6 +50,14 @@ seq.sync().then(function(){
       }).then(function(){
         console.log('Base de datos inicializada');
       });
-    };
+    }
+    if(count == 2){
+      Quiz.create({
+        pregunta: '¿What is the capital of United Kindom?',
+        respuesta: 'London'
+      }).then(function(){
+        console.log('Base de datos inicializada');
+      });
+    }
   });
 });
