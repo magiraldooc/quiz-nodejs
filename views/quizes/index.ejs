@@ -3,7 +3,7 @@
     Búsqueda de preguntas:
   </p>
   <input type="text" name="busqueda" value="Palabras a buscar"/>
-  <input type="submit" value="Buscar"/>
+  <input class="button" type="submit" value="Buscar"/>
 </form>
 <p>
   <table>
@@ -12,8 +12,11 @@
         <td>
           <a href="quizes/<%= quizes[i].id %>"><%= quizes[i].pregunta %></a>
         </td>
+        <td>
+          <a class="button" href="/quizes/<%= quizes[i].id %>/edit">Editar</a>
+        </td>
       </tr>
     <% } %>
   </table>
 </p>
-<a href="/quizes/new"><button type="button">Crear pregunta</button></a>
+<a class="button" href="/quizes/new">Crear pregunta</a>

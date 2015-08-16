@@ -6,12 +6,4 @@ function ocultarInputValue(){
       $(this).val('');
     }
   });
-
-  $('input:submit').on('click', function(){
-    $('form').find(':input').each(function(){
-      if($(this).val() === $(this).attr('value')){
-        $(this).val('')
-      }
-    });
-  });
 }
