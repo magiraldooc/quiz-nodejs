@@ -5,3 +5,16 @@
   <input type="text" name="respuesta" value="Responda aquí"/>
   <input type="submit" value="Envíar"/>
 </form>
+
+<p>
+  <a href="/quizes/<%= quiz.id %>/comments/new">Nuevo comentario</a>
+</p>
+
+<p>
+  Comentario:
+</p>
+<% for(index in quiz.Comments){ %>
+  <p id="comentarios">
+    - <%= quiz.Comments[index].texto %>
+  </p>
+<% } %>

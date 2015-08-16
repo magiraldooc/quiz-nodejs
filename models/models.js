@@ -30,8 +30,17 @@ var seq = new sequelize(
 //Importa la definición de la tabla Quiz en quiz.js
 var Quiz = seq.import(path.join(__dirname, 'quiz'));
 
+//Importa la definición de la tabla Comment en comment.js
+var Comment = seq.import(path.join(__dirname, 'comment'));
+
+Comment.belongsTo(Quiz);
+Quiz.hasMany(Comment);
+
 //Exporta la definición de la tabla Quiz
 exports.Quiz = Quiz;
+
+//Exporta la definición de la tabla Comment
+exports.Comment = Comment;
 
 //seq.sync() crea e inicializa la tabla de preguntas en la BD
 //Ya no se usa el metodo success, debe usarse then
