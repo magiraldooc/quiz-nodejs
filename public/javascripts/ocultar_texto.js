@@ -1,14 +1,17 @@
-$(ocultarValue);
+$(ocultarInputValue);
 
-function ocultarValue(){
-  var value;
-  $('input:text').on('focusin', function(){
-    value = $(this).val();
-    $(this).val('');
-  });
-  $('input:text').on('focusout', function(){
-    if($(this).val() === ''){
-      $(this).val(value);
+function ocultarInputValue(){
+  $('input:text').one('focusin', function(){
+    if($(this).val() === $(this).attr('value')){
+      $(this).val('');
     }
+  });
+
+  $('input:submit').on('click', function(){
+    $('form').find(':input').each(function(){
+      if($(this).val() === $(this).attr('value')){
+        $(this).val('')
+      }
+    });
   });
 }
