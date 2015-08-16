@@ -23,6 +23,7 @@ exports.index = function(req, res){
       errors: []
     });
   }).catch(function(error){
+    console.log(error.message);
     next(error);
   });
 };
@@ -67,7 +68,6 @@ exports.new = function(req, res){
 //POST /quizes/create
 exports.create = function(req, res){
   var quiz = models.Quiz.build(req.body.quiz);
-
   quiz.validate().then(function(err){
     if(err){
       res.render('quizes/new', {
@@ -77,7 +77,7 @@ exports.create = function(req, res){
     }else{
       //Guarda en BD los campos pregunta y reespuesta
       quiz.save({
-        fields: ['pregunta', 'respuesta']
+        fields: ['pregunta', 'respuesta', 'tematica']
       }).then(function(){
         res.redirect('/quizes');
       });
@@ -98,6 +98,8 @@ exports.edit = function(req, res){
 exports.update = function(req, res){
   req.quiz.pregunta = req.body.quiz.pregunta;
   req.quiz.respuesta = req.body.quiz.respuesta;
+  req.quiz.tematica = req.body.quiz.tematica;
+  console.log(req.body.quiz.tematica);
   req.quiz.validate().then(function(err){
     if(err){
       res.render('quizes/edit', {
@@ -107,7 +109,7 @@ exports.update = function(req, res){
     }else{
       //Guarda en BD los campos pregunta y reespuesta
       req.quiz.save({
-        fields: ['pregunta', 'respuesta']
+        fields: ['pregunta', 'respuesta', 'tematica']
       }).then(function(){
         res.redirect('/quizes');
       });

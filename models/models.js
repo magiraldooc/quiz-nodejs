@@ -42,11 +42,13 @@ seq.sync().then(function(){
     if(count === 0){
       Quiz.create({
         pregunta: '¿Cuál es la capital de Italia?',
-        respuesta: 'Roma'
+        respuesta: 'Roma',
+        tematica: 'otro'
       });
       Quiz.create({
         pregunta: '¿Cuál es la capital de Portugal?',
-        respuesta: 'Lisboa'
+        respuesta: 'Lisboa',
+        tematica: 'otro'
       }).then(function(){
         console.log('Base de datos inicializada');
       });

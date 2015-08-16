@@ -1,8 +1,22 @@
 <label for="pregunta" class="rem">Pregunta:</label>
-<input type="text" id="pregunta" name="quiz[pregunta]" value="<%= quiz.pregunta %>"
-<br><br>
+<input type="text" id="pregunta" name="quiz[pregunta]" value="<%= quiz.pregunta %>">
+<br>
 <label for="respuesta" class="rem">Respuesta:</label>
-<input type="text" id="respuesta" name="quiz[respuesta]" value="<%= quiz.respuesta %>"
-<br><br>
+<input type="text" id="respuesta" name="quiz[respuesta]" value="<%= quiz.respuesta %>">
+<br>
+<label for="tematica" class="rem">Temática:</label>
+<select id="tematica" name="quiz[tematica]">
+  <option value="otro" selected>Otro</option>
+  <option value="humanidades">Humanidades</option>
+  <option value="ocio">Ocio</option>
+  <option value="ciencia">Ciencia</option>
+  <option value="tecnologia">Tecnología</option>
+</select>
+<br>
 <a class="button" href="/quizes">Cancelar</a>
 <input class="button" type="submit" value="Guardar">
+<script>
+  if('<%= quiz.tematica %>' !== 'undefined'){
+    $('#tematica').val('<%= quiz.tematica %>');
+  }
+</script>
