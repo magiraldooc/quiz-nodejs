@@ -29,3 +29,7 @@ a:visited {
 a:hover {
   color: #D49A6A;
 }
+
+.rem {
+  display: none;
+}
