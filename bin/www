@@ -1,9 +1,28 @@
 #!/usr/bin/nodejs
-var debug = require('debug')('my-application');
+var debug = require('debug')('quiz-nodejs');
 var app = require('../app');
+
+/*
+var fs = require('fs');
+var https = require('https');
+*/
+
+/*Configuración HTTPS
+var options = {
+  key: fs.readFileSync('certs/quiz-nodejs-key.pem').toString(),
+  certs: fs.readFileSync('certs/quiz-nodejs-cert.pem').toString(),
+};
+*/
 
 app.set('port', process.env.PORT || 3000);
 
 var server = app.listen(app.get('port'), function() {
   debug('Express server listening on port ' + server.address().port);
 });
+
+/*
+var serverSecure = https.createServer(options, app);
+serverSecure.listen(8443, function(){
+  debug('Express server listening on port ' + server.address().port);
+});
+*/
