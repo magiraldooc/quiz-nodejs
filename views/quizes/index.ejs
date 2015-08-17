@@ -12,16 +12,20 @@
         <td>
           <a href="quizes/<%= quizes[i].id %>"><%= quizes[i].pregunta %></a>
         </td>
-        <td>
-          <a class="button" href="/quizes/<%= quizes[i].id %>/edit">Editar</a>
-        </td>
-        <td>
-          <form method="POST" action="/quizes/<%= quizes[i].id %>?_method=delete">
-            <input class="button" type="submit" onClick="return confirm('Borrar: <%= quizes[i].pregunta %>');" value="Borrar"/>
-          </form>
-        </td>
+        <% if(session.user){ %>
+          <td>
+            <a class="button" href="/quizes/<%= quizes[i].id %>/edit">Editar</a>
+          </td>
+          <td>
+            <form method="POST" action="/quizes/<%= quizes[i].id %>?_method=delete">
+              <input class="button" type="submit" onClick="return confirm('Borrar: <%= quizes[i].pregunta %>');" value="Borrar"/>
+            </form>
+          </td>
+        <% } %>
       </tr>
     <% } %>
   </table>
 </p>
-<a class="button" href="/quizes/new">Crear pregunta</a>
+<% if(session.user){ %>
+  <a class="button" href="/quizes/new">Crear pregunta</a>
+<% } %>
