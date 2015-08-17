@@ -36,6 +36,23 @@ app.use(function(req, res, next){
   next();
 });
 
+app.use(function(req, res, next){
+  if(res.locals.session.lastTransaction){
+    var horaActual = new Date();
+    var horaSesion = Date.parse(req.session.lastTransaction);
+    var diffTime = Math.abs(horaActual.getTime() - horaSesion);
+    if(diffTime / 1000 > 60){
+      delete req.session.user;
+      delete req.session.lastTransaction;
+      //Redirección al path anterior a login
+      res.redirect(req.session.redir.toString());
+    }else{
+      req.session.lastTransaction = new Date();
+    }
+  }
+  next();
+});
+
 app.use('/', routes);
 
 /// catch 404 and forwarding to error handler
